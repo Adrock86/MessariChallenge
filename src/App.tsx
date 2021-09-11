@@ -121,7 +121,6 @@ const App = () => {
     const messariTokenMetricDataResp = await axios.get(
         `https://data.messari.io/api/v1/assets/${tokenData.slug}/metrics`
     );
-    console.log(messariTokenMetricDataResp.data.data);
     if (messariTokenMetricDataResp.data.data) {
       setSelectedTokenMetricData(messariTokenMetricDataResp.data.data);
     }
@@ -131,7 +130,6 @@ const App = () => {
     const messariTokenMetricTimeDataResp = await axios.get(
         `https://data.messari.io/api/v1/assets/${tokenData.symbol}/metrics/price/time-series?start=2021-01-01&end=2021-02-01&interval=1d`
     );
-    console.log('time metrics data', messariTokenMetricTimeDataResp);
     if (messariTokenMetricTimeDataResp?.data?.data?.values) {
       setSelectedTokenMetricTimeData(messariTokenMetricTimeDataResp.data.data.values);
     }
