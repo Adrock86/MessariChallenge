@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField, { FilledTextFieldProps, OutlinedTextFieldProps, StandardTextFieldProps } from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
-// @ts-ignore
 import AnyChart from 'anychart-react';
 // @ts-ignore
 import anychart from 'anychart';
@@ -67,12 +66,12 @@ interface ITokenData {
 }
 interface ITokenMetricData {
   market_data: {
-    price_usd: string;
-    price_btc: string;
-    volume_last_24_hours: string;
+    price_usd: number;
+    price_btc: number;
+    volume_last_24_hours: number;
   };
   marketcap: {
-    current_marketcap_usd: string;
+    current_marketcap_usd: number;
   };
 }
 
@@ -84,12 +83,12 @@ const tokenDataObj: ITokenData = {
 
 const tokenMetricData: ITokenMetricData = {
   market_data: {
-    price_usd: '',
-    price_btc: '',
-    volume_last_24_hours: ''
+    price_usd: undefined || 0,
+    price_btc: undefined || 0,
+    volume_last_24_hours: undefined || 0
   },
   marketcap: {
-    current_marketcap_usd: ''
+    current_marketcap_usd: undefined || 0
   }
 };
 
@@ -99,6 +98,7 @@ const App = () => {
   const [selectedToken, setSelectedToken] = React.useState(tokenDataObj);
   const [selectedTokenMetricTimeData, setSelectedTokenMetricTimeData] = React.useState([]);
   const [selectedTokenMetricData, setSelectedTokenMetricData] = React.useState(tokenMetricData);
+  const internationalNumberFormat = new Intl.NumberFormat('en-US');
 
   useEffect(() => {
     getTokenList().catch((errResp) => console.error(errResp));
@@ -206,7 +206,7 @@ const App = () => {
             <div className={classes.statsContainer}>
               <div className={classes.statsInnerContainer}>
                 <span className={classes.stats}>
-                  Current Price USD: ${selectedTokenMetricData.market_data.price_usd}
+                  Current Price USD: ${internationalNumberFormat.format(selectedTokenMetricData.market_data.price_usd)}
                 </span>
                 <span className={classes.stats}>
                   Current Price BTC: {selectedTokenMetricData.market_data.price_btc}
@@ -214,10 +214,10 @@ const App = () => {
               </div>
               <div className={classes.statsInnerContainer}>
                 <span className={classes.stats}>
-                  Volume: ${selectedTokenMetricData.market_data.volume_last_24_hours}
+                  Volume: ${internationalNumberFormat.format(selectedTokenMetricData.market_data.volume_last_24_hours)}
                 </span>
                 <span className={classes.stats}>
-                  Market Cap: ${selectedTokenMetricData.marketcap.current_marketcap_usd}
+                  Market Cap: ${internationalNumberFormat.format(selectedTokenMetricData.marketcap.current_marketcap_usd)}
                 </span>
               </div>
             </div>
