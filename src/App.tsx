@@ -57,13 +57,9 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-around'
   },
-  statsInnerContainer: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
   stats: {
     width: '49%',
-    padding: '12px'
+    padding: '12px 8px'
   }
 });
 
@@ -234,27 +230,24 @@ const App = () => {
   const tokenData = () => {
     if (selectedTokenMetricTimeData?.length && selectedToken && selectedTokenMetricData) {
       return (
-          <Card className={classes.tableContainer}>
-            <div className={classes.statsContainer}>
-              <div className={classes.statsInnerContainer}>
-                <span className={classes.stats}>
-                  Current Price USD: ${internationalNumberFormat.format(selectedTokenMetricData.market_data.price_usd)}
-                </span>
-                <span className={classes.stats}>
-                  Current Price BTC: {selectedTokenMetricData.market_data.price_btc}
-                </span>
-              </div>
-              <div className={classes.statsInnerContainer}>
-                <span className={classes.stats}>
-                  Volume: ${internationalNumberFormat.format(selectedTokenMetricData.market_data.volume_last_24_hours)}
-                </span>
-                <span className={classes.stats}>
-                  Market Cap: ${internationalNumberFormat.format(selectedTokenMetricData.marketcap.current_marketcap_usd)}
-                </span>
-              </div>
-            </div>
-            <AnyChart height={600} id={`coinChart`} instance={handleGraph(selectedTokenMetricTimeData, selectedToken)} />
-          </Card>
+        <Card className={classes.tableContainer}>
+          <div className={classes.statsContainer}>
+            <span className={classes.stats}>
+              Current Price USD: ${internationalNumberFormat.format(selectedTokenMetricData.market_data.price_usd)}
+            </span>
+            <span className={classes.stats}>
+              Current Price BTC: {selectedTokenMetricData.market_data.price_btc.toFixed(12)}
+            </span>
+          
+            <span className={classes.stats}>
+              Volume: ${internationalNumberFormat.format(selectedTokenMetricData.market_data.volume_last_24_hours)}
+            </span>
+            <span className={classes.stats}>
+              Market Cap: ${internationalNumberFormat.format(selectedTokenMetricData.marketcap.current_marketcap_usd)}
+            </span>
+          </div>
+          <AnyChart height={600} id={`coinChart`} instance={handleGraph(selectedTokenMetricTimeData, selectedToken)} />
+        </Card>
       );
     }
     return <div></div>;
