@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/MessariChallenge/static/css/main.7e225b21.chunk.css",
+    "main.js": "/MessariChallenge/static/js/main.05ec154d.chunk.js",
+    "main.js.map": "/MessariChallenge/static/js/main.05ec154d.chunk.js.map",
+    "runtime-main.js": "/MessariChallenge/static/js/runtime-main.4e3ca656.js",
+    "runtime-main.js.map": "/MessariChallenge/static/js/runtime-main.4e3ca656.js.map",
+    "static/js/2.a8c9ecbd.chunk.js": "/MessariChallenge/static/js/2.a8c9ecbd.chunk.js",
+    "static/js/2.a8c9ecbd.chunk.js.map": "/MessariChallenge/static/js/2.a8c9ecbd.chunk.js.map",
+    "static/js/3.98cce0fc.chunk.js": "/MessariChallenge/static/js/3.98cce0fc.chunk.js",
+    "static/js/3.98cce0fc.chunk.js.map": "/MessariChallenge/static/js/3.98cce0fc.chunk.js.map",
+    "index.html": "/MessariChallenge/index.html",
+    "static/css/main.7e225b21.chunk.css.map": "/MessariChallenge/static/css/main.7e225b21.chunk.css.map",
+    "static/js/2.a8c9ecbd.chunk.js.LICENSE.txt": "/MessariChallenge/static/js/2.a8c9ecbd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e3ca656.js",
+    "static/js/2.a8c9ecbd.chunk.js",
+    "static/css/main.7e225b21.chunk.css",
+    "static/js/main.05ec154d.chunk.js"
+  ]
+}
