@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField, { FilledTextFieldProps, OutlinedTextFieldProps, StandardTextFieldProps } from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
@@ -12,10 +12,18 @@ const axios = require('axios');
 
 const useStyles = makeStyles({
   welcomeMsg: {
-    margin: '12px',
+    margin: '0 12px 12px 12px',
     textAlign: 'center'
   },
+  '@keyframes blinker': {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+  },
   loading:{
+    animationName: '$blinker',
+    animationDuration: '1s',
+    animationTimingFunction: 'linear',
+    animationIterationCount: 'infinite',
     margin: 'auto',
     height: '100%',
     width: '100%',
@@ -40,7 +48,7 @@ const useStyles = makeStyles({
     margin: '16px auto',
     padding: '24px',
     boxShadow: '3px 3px 3px #000',
-    width: '95%',
+    width: '90%',
     display: 'flex',
     color: 'lightgray',
     flexDirection: 'column'
@@ -51,7 +59,7 @@ const useStyles = makeStyles({
   },
   statsInnerContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'row'
   },
   stats: {
     width: '49%',
@@ -80,6 +88,32 @@ const tokenDataObj: ITokenData = {
   slug: '',
   name: ''
 };
+
+const StyledACTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+        color: 'white'
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+        color: 'white'
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+        color: 'white'
+      },
+    },
+    color: 'white',
+  },
+})(TextField);
 
 const tokenMetricData: ITokenMetricData = {
   market_data: {
@@ -229,13 +263,13 @@ const App = () => {
   const renderAutocomplete = () => {
     if (!allTokens.length) {
       return (
-          <h3 className={classes.loading}>Loading...</h3>
+          <h2 className={classes.loading}>Loading...</h2>
       )
     }
     return (
         <Autocomplete
             id='messari-token-list'
-            style={{ width: 300, margin: '16px auto' }}
+            style={{ width: 300, margin: '16px auto', color: 'white' }}
             options={allTokens}
             classes={{
               option: classes.option
@@ -257,7 +291,7 @@ const App = () => {
                     | (JSX.IntrinsicAttributes & FilledTextFieldProps)
                     | (JSX.IntrinsicAttributes & OutlinedTextFieldProps)
             ) => (
-                <TextField
+                <StyledACTextField
                     {...params}
                     label='Search for a Token'
                     variant='outlined'
